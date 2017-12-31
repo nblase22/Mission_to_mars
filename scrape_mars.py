@@ -6,8 +6,8 @@ from selenium import webdriver
 
 def scrape():
     def init_browser():
-    executable_path = {"executable_path": 'chromedriver.exe'}
-    return Browser("chrome", **executable_path, headless=False)
+        executable_path = {"executable_path": 'chromedriver.exe'}
+        return Browser("chrome", **executable_path, headless=False)
     #-------------------------MARS NEWS-----------------------------
     # initialize browser
     browser = init_browser()
@@ -27,7 +27,7 @@ def scrape():
     mars_news["news_p"] = soup.find("div", class_="article_teaser_body").get_text()
 
     #-------------------------Featured Image-----------------------------
-    browser = init_browser()
+    #browser = init_browser()
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     
     browser.visit(url)
@@ -40,7 +40,7 @@ def scrape():
     featured_image_url = "https://www.jpl.nasa.gov" + image["data-fancybox-href"]
 
     #-------------------------MARS WEATHER-----------------------------
-    browser = init_browser()
+    #browser = init_browser()
     url = "https://twitter.com/marswxreport?lang=en"
     
     browser.visit(url)
@@ -63,9 +63,21 @@ def scrape():
     url = "https://space-facts.com/mars/"
     
     mars_table = pd.read_html(url)
+    
+
+    mars_table_df = mars_table[0]
+    mars_table_df.columns = ["Characteristic", "Measurement"]
+
+    #mars_table = mars_table_df.set_index("Characteristic")
+    #mars_table = mars_table.to_dict()
+
+    mars_dict_list = []
+
+    for i in range(0, len(mars_table_df)):
+        mars_dict_list.append({"des": mars_table_df.iloc[i]['Characteristic'], "mes": mars_table_df.iloc[i]['Measurement']})
 
     #-------------------------MARS HEMISPHERES-----------------------------
-    browser = init_browser()
+    #browser = init_browser()
     url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
     base_url = "https://astrogeology.usgs.gov"
 
@@ -112,7 +124,7 @@ def scrape():
     scraped_data["news"] = mars_news
     scraped_data["feat_img"] = featured_image_url
     scraped_data["weather"] = mars_weather
-    scraped_data["facts"] = mars_table
+    scraped_data["facts"] = mars_dict_list
     scraped_data["hemispheres"] = hemisphere_image_urls
 
     return scraped_data

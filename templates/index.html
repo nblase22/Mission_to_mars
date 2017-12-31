@@ -5,8 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hot Finds</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <style>
+    .boxed {
+      border: 1px solid lightgray;
+      border-radius: 10px;
+      padding: 10px; 
+    }
+  </style>
 </head>
 
 <body>
@@ -17,12 +25,76 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
-    <!-- Craigslist Listings -->
-    <div class="row" id="craiglist-listings">
+    <!-- Mars Facts -->
+    <div class="row" id="mars news">
       <div class="col-md-12">
-        <h4 class="heading">{{listings.price}} {{listings.headline}}</h4>
-        <small>{{listings.hood}}</small>
+        <h1><strong>Latest Mars News</strong></h1>
+        <h4 class="heading"><strong>{{mars_facts.news.news_title}}</strong></h4>
+        <h5>{{mars_facts.news.news_p}}</h5>
       </div>
+    </div>
+
+    <div class="row" id="featured_photo_facts">
+      <div class="col-md-8">
+        <h1><strong>Featured Mars Image</strong></h1>
+        <img class="img-responsive" src="{{mars_facts.feat_img}}" alt="Featured Mars Image">
+      </div>
+        <div class="col-md-4">
+          <div class="boxed">
+            <h3><strong>Current Weather on Mars</strong></h3>
+            <h5>{{mars_facts.weather}}</h5>
+          </div>
+            <br>
+            <h3><strong>Mars Facts</strong></h3>
+            <table border="1" cellpadding="5">
+              <tr>
+                <th>Description</th>
+                <th>Value</th>
+              </tr>
+              {% for fact in mars_facts.facts %}
+              <tr>
+                  <td align="left">{{fact.des}}</td>
+                  <td align="right">{{fact.mes}}</td>
+              </tr>  
+              {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="row" id="Mars Hemispheres">
+      <div class="col-md-12">
+        <h1 class="text-center"><strong>Mars Hemispheres</strong></h1>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row" id="Hemisphere_one">
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <img class="img-responsive" src="{{mars_facts.hemispheres[0].img_url}}">
+          <h3><strong>{{mars_facts.hemispheres[0].title}}</strong></h3>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <img class="img-responsive" src="{{mars_facts.hemispheres[1].img_url}}">
+          <h3><strong>{{mars_facts.hemispheres[1].title}}</strong></h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="Hemisphere_two">
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img class="img-responsive" src="{{mars_facts.hemispheres[2].img_url}}">
+            <h3><strong>{{mars_facts.hemispheres[2].title}}</strong></h3>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img class="img-responsive" src="{{mars_facts.hemispheres[3].img_url}}">
+            <h3><strong>{{mars_facts.hemispheres[3].title}}</strong></h3>
+          </div>
+        </div>
     </div>
 
   </div>
