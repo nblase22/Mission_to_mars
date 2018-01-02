@@ -22,4 +22,5 @@ splinter==0.7.7
 SQLAlchemy==1.1.9
 unicodecsv==0.14.1
 urllib3==1.22
+scrape_mars
 
