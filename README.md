@@ -1,2 +1,16 @@
 # Mission_to_mars
-Homework 13 Data vis bootcamp
+A web application that scrapes various websites for data related to the Mission to Mars and displays the information in a single HTML page.
+
+Requirements:
+
+Time
+Splinter
+bs4
+pandas
+selenium
+flask
+flask_pymongo
+Python 3.6
+
+Note - Program utilizes chromedriver.exe
+
