@@ -4,13 +4,21 @@ A web application that scrapes various websites for data related to the Mission 
 Requirements:
 
 Time
+
 Splinter
+
 bs4
+
 pandas
+
 selenium
+
 flask
+
 flask_pymongo
+
 Python 3.6
+
 
 Note - Program utilizes chromedriver.exe
 
