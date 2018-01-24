@@ -1,3 +1,4 @@
+# import dependencies
 import time
 from splinter import Browser
 from bs4 import BeautifulSoup
@@ -11,14 +12,16 @@ app = Flask(__name__)
 
 mongo = PyMongo(app)
 
+# basic app route
 @app.route("/")
 def index():
     mars_facts = mongo.db.mars_facts.find_one()
     return render_template("index.html", mars_facts=mars_facts)
 
-
+# app route for the webscraper
 @app.route("/scrape")
 def scrape():
+    # create the mongodb and fill it with the webscraper results
     mars_facts = mongo.db.mars_facts
     mars_facts_data = scrape_mars.scrape()
     print(mars_facts_data)
