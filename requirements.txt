@@ -6,7 +6,7 @@ Jinja2==2.9.6
 jsonlines==1.2.0
 jsonschema==2.6.0
 jsontableschema==0.10.1
-lxml==3.7.3
+lxml==4.6.3
 matplotlib==2.0.2
 numpy==1.12.1
 numpydoc==0.6.0
